@@ -8,7 +8,7 @@ export function Navigation() {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="/" className="text-2xl font-bold text-gray-900">
-              Docus
+              Nishnant
             </a>
             <div className="hidden md:flex ml-10 space-x-8">
               <button className="text-gray-700 group inline-flex items-center">

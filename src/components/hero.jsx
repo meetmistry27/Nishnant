@@ -19,7 +19,7 @@ export function Hero() {
               validate them with top US and European doctors.
             </p>
             <div>
-              <Button className="hero-button">Try Docus for Free</Button>
+              <Button className="hero-button">Try Nishnant for Free</Button>
             </div>
           </div>
           <div className="hero-image-container">

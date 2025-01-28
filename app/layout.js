@@ -1,4 +1,4 @@
-import { Navigation } from "./components/navigation.jsx"
+//import { Navigation } from "./components/navigation.jsx"
 import { CookieConsent } from "./components/cookie-consent.jsx"
 import "./globals.css"
 
@@ -11,7 +11,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
         <main>{children}</main>
         <CookieConsent />
       </body>
