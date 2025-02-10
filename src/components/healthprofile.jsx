@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 export function HealthProfile() {
   const percentage = 60
@@ -6,10 +7,12 @@ export function HealthProfile() {
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
       <div className="flex justify-between items-center">
+        <Link to="/health-data">
         <div>
           <h2 className="text-2xl font-semibold text-teal-600">Meet's</h2>
           <p className="text-gray-500">Health Profile</p>
         </div>
+        </Link>
         <div className="relative w-16 h-16">
           <svg className="transform -rotate-90 w-16 h-16">
             <circle

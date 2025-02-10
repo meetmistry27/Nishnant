@@ -1,5 +1,6 @@
 import React from "react"
 import { Button } from "./ui/button"
+import { Link } from "react-router-dom";
 
 export function Navigation() {
   return (
@@ -50,7 +51,9 @@ export function Navigation() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
+            <Link to="/signup">
             <Button variant="ghost">Sign in</Button>
+            </Link>
             <Button className="bg-red-500 hover:bg-red-600 text-white">Get Started for Free</Button>
           </div>
         </div>
