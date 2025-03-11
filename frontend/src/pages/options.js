@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs.jsx"
 function Options() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
+      {/* Navigation
       <nav className="fixed top-0 left-0 right-0 bg-white border-b z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -25,7 +25,7 @@ function Options() {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Main Content */}
       <main className="pt-24 pb-12 px-4">

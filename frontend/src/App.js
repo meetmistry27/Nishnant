@@ -9,6 +9,7 @@ import { SignUp } from "./components/signup.jsx"
 import { EmailSignUp } from "./components/emailsignin.jsx"
 import { SignIn } from "./components/signin.jsx"
 import { HealthData } from "./components/healthdata.jsx"
+import { ProfileCompletionForm } from "./components/general-information-form.jsx"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/signup/email" element={<EmailSignUp/>}/>
         <Route path="/signin" element={<SignIn/>}/>
+        <Route path="/onboarding" element={<ProfileCompletionForm/>} />
         <Route path="/health-data" element={<HealthData />} />
       </Routes>
     </Router>

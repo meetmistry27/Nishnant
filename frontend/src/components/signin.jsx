@@ -1,45 +1,76 @@
-import { Link } from "react-router-dom"
-import { Mail, Lock } from "lucide-react"
-import { Button } from "./ui/button.jsx"
-import { Input } from "./ui/input.jsx"
-import { Label } from "./ui/label.jsx"
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Mail, Lock } from "lucide-react";
+import { signIn } from "../api"; // Adjust path as needed
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 export function SignIn() {
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Add your sign in logic here
-  }
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      const response = await signIn(user);
+
+      if (response?.token) {
+        setSuccess("Login successful! Redirecting...");
+        localStorage.setItem("token", response.token);
+        setTimeout(() => navigate("/profile"), 1500);
+      } else {
+        setError(response?.message || "Invalid credentials. Try again.");
+      }
+    } catch (err) {
+      setError("Server error. Please try again.");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
-
-        {/* Heading */}
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">Welcome back!</h2>
 
-        {/* Form */}
+        {error && <p className="text-red-500 text-center">{error}</p>}
+        {success && <p className="text-green-500 text-center">{success}</p>}
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <Label htmlFor="email" className="sr-only">
-                Email
-              </Label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
-                <Input id="email" name="email" type="email" required className="pl-10" placeholder="Enter your email" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="pl-10"
+                  placeholder="Enter your email"
+                  value={user.email}
+                  onChange={handleChange}
+                />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="password" className="sr-only">
-                Password
-              </Label>
+              <Label htmlFor="password">Password</Label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
                   id="password"
                   name="password"
@@ -47,6 +78,8 @@ export function SignIn() {
                   required
                   className="pl-10"
                   placeholder="Enter your password"
+                  value={user.password}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -59,7 +92,7 @@ export function SignIn() {
           </div>
 
           <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 text-white">
-            Sign in
+            {loading ? "Signing in..." : "Sign in"}
           </Button>
 
           <div className="text-center">
@@ -85,7 +118,7 @@ export function SignIn() {
             variant="outline"
             className="w-full"
             onClick={() => {
-              // Add Google sign in logic here
+              console.log("Google sign-in logic goes here");
             }}
           >
             <img
@@ -97,7 +130,6 @@ export function SignIn() {
           </Button>
         </form>
 
-        {/* Terms and Privacy */}
         <p className="mt-4 text-center text-sm text-gray-600">
           By signing in you agree to the{" "}
           <Link to="/terms" className="text-gray-600 hover:text-gray-500">
@@ -114,6 +146,5 @@ export function SignIn() {
         </p>
       </div>
     </div>
-  )
+  );
 }
-

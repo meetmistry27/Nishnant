@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 export function HealthData() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
+      {/* Header
       <header className="fixed top-0 left-0 right-0 bg-white border-b z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
@@ -30,7 +30,7 @@ export function HealthData() {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto px-4 pt-24 pb-12">
